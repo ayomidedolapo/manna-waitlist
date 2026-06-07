@@ -13,16 +13,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://manna-waitlist.vercel.app"),
   title: "Manna Waitlist",
   description: "Skip the traffic, the heat, and the market queues. Manna brings farm-fresh produce straight to your doorstep, handling the logistics so you can focus on what matters. Join the waitlist for early access to the Manna standard.",
-  // Add these fields to satisfy the validator
-  metadataBase: new URL("https://manna-waitlist.vercel.app"), 
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Manna Waitlist",
     description: "Skip the traffic, the heat, and the market queues. Manna brings farm-fresh produce straight to your doorstep.",
-    url: "https://manna-waitlist.vercel.app", // Satisfies og:url
+    url: "/",
     siteName: "Manna Waitlist",
-    type: "website", // Satisfies og:type
+    type: "website",
     images: [
       {
         url: "/caption.jpg",
