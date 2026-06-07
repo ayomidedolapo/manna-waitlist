@@ -108,12 +108,13 @@ export default function Home() {
 
             <div className="relative">
               <label htmlFor="phone" className="block text-[10px] font-bold tracking-widest text-gray-400 uppercase mb-1">
-                Phone Number <span className="text-gray-400 font-normal lowercase">(optional)</span>
+                Phone Number <span className="text-manna-green">*</span>
               </label>
               <input
                 type="tel"
                 id="phone"
                 name="phone"
+                required
                 className="w-full px-0 py-1.5 border-b border-gray-200 focus:outline-none focus:border-manna-green transition-colors text-sm text-gray-800 placeholder-gray-300 bg-transparent"
                 placeholder="e.g., +234..."
               />
@@ -216,11 +217,15 @@ export default function Home() {
               Thank you for connecting with Manna. Don&apos;t miss out on real-time community drops, make sure to join our social media accounts at the bottom of this page!
             </p>
 
+            {/* Action button modified to redirect user directly to WhatsApp channel */}
             <button
-              onClick={() => setIsSuccess(false)}
-              className="w-full bg-gray-900 hover:bg-gray-800 text-white font-medium py-2.5 rounded-lg text-xs transition-colors"
+              onClick={() => {
+                setIsSuccess(false);
+                window.open("https://whatsapp.com/channel/0029Vb8eWExHgZWlGKG5SD0H", "_blank", "noopener,noreferrer");
+              }}
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2.5 rounded-lg text-xs transition-colors"
             >
-              Close
+              Join WhatsApp Community
             </button>
           </div>
         </div>
