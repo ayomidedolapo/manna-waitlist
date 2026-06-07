@@ -8,7 +8,7 @@ generator client {
 
 model Waitlist {
   id        String   @id @default(cuid())
-  name      String   @unique
+  name      String   // Removed @unique from here
   email     String   @unique
   phone     String?
   product   String
