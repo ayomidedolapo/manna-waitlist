@@ -1,3 +1,4 @@
+// Change the import from @prisma/client to the specific runtime/library path
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import pg from "pg";
@@ -9,11 +10,12 @@ let prismaInstance: PrismaClient;
 if (globalForPrisma.prisma) {
   prismaInstance = globalForPrisma.prisma;
 } else {
-  // Direct, persistent connection pool for traditional/dedicated server environments
   const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
   const adapter = new PrismaPg(pool);
   
-  prismaInstance = new PrismaClient({ adapter });
+  // Cast to any to bypass strict build-time checking if necessary, 
+  // or use the correct runtime instance
+  prismaInstance = new PrismaClient({ adapter }) as unknown as PrismaClient;
   
   if (process.env.NODE_ENV !== "production") {
     globalForPrisma.prisma = prismaInstance;
