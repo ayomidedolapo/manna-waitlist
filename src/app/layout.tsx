@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Skip the traffic, the heat, and the market queues. Manna brings farm-fresh produce straight to your doorstep.",
     images: [
       {
-        url: "/MANNA@3x_061045.jpg.jpeg", // Ensure this image is in your /public folder
+        url: "/public/caption.jpg", // Ensure this image is in your /public folder
         width: 1200,
         height: 630,
         alt: "Manna Agritech Waitlist",
