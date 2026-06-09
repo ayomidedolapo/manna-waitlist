@@ -25,6 +25,15 @@ export default function Home() {
     setErrorMessage("");
 
     const formData = new FormData(event.currentTarget);
+    
+    // Ensure at least one product checkbox is selected
+    const selectedProducts = formData.getAll("products");
+    if (selectedProducts.length === 0) {
+      setErrorMessage("Please select at least one farm product.");
+      setIsSubmitting(false);
+      return;
+    }
+
     const result = await submitWaitlist(formData);
 
     setIsSubmitting(false);
@@ -127,7 +136,7 @@ export default function Home() {
               <div className="flex flex-wrap gap-2">
                 {products.map((product) => (
                   <label key={product} className="cursor-pointer select-none">
-                    <input type="radio" name="product" value={product} required className="peer p-0 sr-only" />
+                    <input type="checkbox" name="products" value={product} className="peer p-0 sr-only" />
                     <span className="inline-block px-3.5 py-1.5 border border-gray-200 rounded-full text-xs font-medium text-gray-600 bg-white transition-all duration-150 peer-checked:border-manna-green peer-checked:bg-manna-green peer-checked:text-white active:scale-95">
                       {product}
                     </span>

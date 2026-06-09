@@ -7,12 +7,18 @@ export async function submitWaitlist(formData: FormData) {
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
     const phone = formData.get("phone") as string;
-    const product = formData.get("product") as string;
+    
+    // Use getAll to collect all checked values from the "products" checkboxes
+    const selectedProducts = formData.getAll("products") as string[];
     const frequency = formData.get("frequency") as string;
 
-    if (!name || !email || !product || !frequency) {
+    if (!name || !email || selectedProducts.length === 0 || !frequency) {
       return { success: false, error: "Please fill in all mandatory fields." };
     }
+
+    // Convert the array of choices into a single comma-separated string
+    // This allows it to save directly into your existing text/string column without breaking your schema
+    const productString = selectedProducts.join(", ");
 
     // Direct entry execution path
     await prisma.waitlist.create({
@@ -20,7 +26,7 @@ export async function submitWaitlist(formData: FormData) {
         name: name.trim(),
         email: email.trim().toLowerCase(),
         phone: phone ? phone.trim() : null,
-        product,
+        product: productString, 
         frequency,
       },
     });
